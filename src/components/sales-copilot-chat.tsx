@@ -12,7 +12,7 @@ const starterMessages: Message[] = [
   {
     role: "assistant",
     content:
-      "I am your Sales Copilot. Ask me what changed in forecast, which deal needs attention, or have me draft a follow-up from the CRM context.",
+      "I am your Sales Copilot for CRM work only. Ask me what changed in forecast, which deal needs attention, or have me draft a sales follow-up from the CRM context.",
   },
 ]
 
@@ -113,8 +113,9 @@ export function SalesCopilotChat() {
           ))}
         </div>
         <div className="mt-6 rounded-md border border-amber-300/20 bg-amber-300/10 p-3 text-sm leading-6 text-amber-50">
-          Copilot can draft and recommend. It does not send emails or update CRM
-          records without review.
+          Sales-only assistant. It can draft and recommend, but it will not
+          answer off-topic questions, send emails, or update CRM records without
+          review.
         </div>
       </aside>
 
@@ -126,6 +127,9 @@ export function SalesCopilotChat() {
           <h2 className="mt-1 text-xl font-semibold">
             Forecast, deals, follow-ups, and CRM hygiene
           </h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Sales and CRM questions only.
+          </p>
         </div>
 
         <div className="flex-1 space-y-4 overflow-y-auto p-4">
