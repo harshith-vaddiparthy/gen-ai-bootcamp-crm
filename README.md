@@ -1,36 +1,126 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gen AI Bootcamp CRM
+
+A simple AI-powered CRM built for sales teams. This project is a fast MVP that combines a clean shadcn dashboard shell with server-side OpenAI routes for Sales Copilot workflows.
+
+The goal is intentionally narrow: make pipeline work easier without building a heavy enterprise CRM. Sales teams can review pipeline health, priority deals, follow-up tasks, account activity, and AI suggestions from one operating dashboard.
+
+## What It Includes
+
+- **Next.js App Router** with TypeScript
+- **Tailwind CSS** and **shadcn/ui**
+- **shadcn `sidebar-07` dashboard shell** adapted into a CRM navigation system
+- **Realistic CRM sample data** for pipeline, deals, tasks, activity, and AI suggestions
+- **Server-only OpenAI integration** using the Responses API
+- **Structured AI routes** for CRM-safe Sales Copilot actions
+- **Product document** with the product vision, entity model, scope, risks, and milestones
+
+## Core Product Flows
+
+- Pipeline management
+- Contact and account timeline
+- Deal detail preview
+- Task and follow-up tracking
+- Sales Copilot suggestions
+
+## Sales Copilot API Routes
+
+The AI routes are intentionally server-only and return review-required suggestions instead of directly mutating CRM data.
+
+```txt
+POST /api/ai/summarize-record
+POST /api/ai/draft-follow-up
+POST /api/ai/structure-note
+```
+
+If `OPENAI_API_KEY` is missing, the routes return a setup response instead of failing silently.
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a local env file:
+
+```bash
+cp .env.example .env.local
+```
+
+Add your OpenAI API key:
+
+```bash
+OPENAI_API_KEY=your_openai_api_key_here
+OPENAI_MODEL=gpt-5.4-mini
+CRM_OPENAI_BASE_URL=https://api.openai.com/v1
+```
+
+Run the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000/dashboard
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Development Commands
 
-## Learn More
+```bash
+npm run dev
+npm run lint
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```txt
+PRODUCT_DOCUMENT.md                 Product spec and MVP plan
+src/app/dashboard/page.tsx          CRM dashboard
+src/components/app-sidebar.tsx      CRM sidebar navigation
+src/lib/crm-data.ts                 Mock CRM demo data
+src/lib/ai/openai.ts                Server-only OpenAI helper
+src/app/api/ai/*/route.ts           Sales Copilot API routes
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+```txt
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-5.4-mini
+CRM_OPENAI_BASE_URL=https://api.openai.com/v1
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Supabase variables are included for the planned persistence layer. The current MVP runs with mocked CRM data.
+
+## Product Direction
+
+Read [PRODUCT_DOCUMENT.md](./PRODUCT_DOCUMENT.md) for the full product plan, including:
+
+- Target users
+- MVP scope
+- Non-goals
+- Entity model
+- AI guardrails
+- API routes
+- Milestones
+- Acceptance criteria
+
+## AI Safety Notes
+
+- The OpenAI API key is only used server-side.
+- AI responses are suggestions, not automatic CRM writes.
+- Any AI-generated field changes should be reviewed by a human before saving.
+- `.env.local` and other real env files are ignored by git.
+
+## License
+
+MIT. See [LICENSE](./LICENSE).
