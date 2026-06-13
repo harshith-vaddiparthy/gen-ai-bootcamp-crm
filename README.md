@@ -9,7 +9,8 @@ The goal is intentionally narrow: make pipeline work easier without building a h
 - **Next.js App Router** with TypeScript
 - **Tailwind CSS** and **shadcn/ui**
 - **shadcn `sidebar-07` dashboard shell** adapted into a CRM navigation system
-- **Realistic CRM sample data** for pipeline, deals, tasks, activity, and AI suggestions
+- **Supabase Postgres schema** for workspaces, users, accounts, contacts, deals, activities, tasks, notes, and AI suggestions
+- **Supabase-backed CRM reads and writes** with demo-data fallback when credentials are missing
 - **Server-only OpenAI integration** using the Responses API
 - **Structured AI routes** for CRM-safe Sales Copilot actions
 - **Product document** with the product vision, entity model, scope, risks, and milestones
@@ -76,15 +77,40 @@ npm run lint
 npm run build
 ```
 
+## Supabase Setup
+
+Create or link a Supabase project, then apply the schema:
+
+```bash
+supabase link --project-ref your-project-ref
+supabase db push
+```
+
+Seed demo CRM data from `supabase/seed/001_demo_crm.sql` in the Supabase SQL editor, or use it as the reference seed for your own data.
+
+Required Supabase env vars:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+```
+
+The app uses the service-role key only in server routes and server components. Do not expose `SUPABASE_SERVICE_ROLE_KEY` to the browser.
+
 ## Project Structure
 
 ```txt
 PRODUCT_DOCUMENT.md                 Product spec and MVP plan
+supabase/migrations/                Supabase schema migrations
+supabase/seed/                      Demo CRM seed SQL
 src/app/dashboard/page.tsx          CRM dashboard
 src/components/app-sidebar.tsx      CRM sidebar navigation
-src/lib/crm-data.ts                 Mock CRM demo data
+src/lib/crm-repository.ts           Supabase data loader and write helpers
+src/lib/crm-data.ts                 Fallback CRM demo data
 src/lib/ai/openai.ts                Server-only OpenAI helper
 src/app/api/ai/*/route.ts           Sales Copilot API routes
+src/app/api/crm/*/route.ts          Supabase-backed CRM write routes
 ```
 
 ## Environment Variables

@@ -1,11 +1,23 @@
 import { CRMShell } from "@/components/crm-shell"
+import { CRMQuickActions } from "@/components/crm-quick-actions"
 import { SalesCopilotChat } from "@/components/sales-copilot-chat"
-import { recommendationCards } from "@/lib/crm-data"
+import { getCRMData } from "@/lib/crm-repository"
 import { SparklesIcon } from "lucide-react"
 
-export default function AIRecommendationsPage() {
+export const dynamic = "force-dynamic"
+
+export default async function AIRecommendationsPage() {
+  const { recommendationCards, source } = await getCRMData()
+
   return (
-    <CRMShell page="AI Recommendations" eyebrow="Sales Copilot is grounded in CRM context">
+    <CRMShell
+      page="AI Recommendations"
+      eyebrow={
+        source === "supabase"
+          ? "Sales Copilot grounded in Supabase CRM data"
+          : "Sales Copilot grounded in demo CRM data"
+      }
+    >
       <section className="grid gap-5 xl:grid-cols-[0.95fr_1.05fr]">
         <div className="rounded-lg border bg-card p-5 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
@@ -42,6 +54,7 @@ export default function AIRecommendationsPage() {
         </div>
       </section>
 
+      <CRMQuickActions />
       <SalesCopilotChat />
     </CRMShell>
   )

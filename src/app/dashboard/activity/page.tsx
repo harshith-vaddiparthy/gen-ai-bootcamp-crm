@@ -1,15 +1,22 @@
 import { CRMShell } from "@/components/crm-shell"
-import {
-  accountTimeline,
-  activityInsights,
-  repActivity,
-  teamActivityStats,
-} from "@/lib/crm-data"
+import { getCRMData } from "@/lib/crm-repository"
 import { ActivityIcon, ClipboardCheckIcon, MailIcon, PhoneCallIcon } from "lucide-react"
 
-export default function TeamActivityPage() {
+export const dynamic = "force-dynamic"
+
+export default async function TeamActivityPage() {
+  const { accountTimeline, activityInsights, repActivity, teamActivityStats, source } =
+    await getCRMData()
+
   return (
-    <CRMShell page="Team Activity" eyebrow="21 AI-assisted CRM updates this week">
+    <CRMShell
+      page="Team Activity"
+      eyebrow={
+        source === "supabase"
+          ? "Live activity from Supabase"
+          : "Demo activity until Supabase is configured"
+      }
+    >
       <section className="rounded-lg border bg-card p-5 shadow-sm">
         <p className="text-sm font-medium text-muted-foreground">
           Sales activity cockpit

@@ -1,15 +1,22 @@
 import { CRMShell } from "@/components/crm-shell"
-import {
-  forecastByRep,
-  forecastMetrics,
-  forecastMovements,
-  pipelineStages,
-} from "@/lib/crm-data"
+import { getCRMData } from "@/lib/crm-repository"
 import { AlertTriangleIcon, BarChart3Icon, TrendingUpIcon } from "lucide-react"
 
-export default function ForecastPulsePage() {
+export const dynamic = "force-dynamic"
+
+export default async function ForecastPulsePage() {
+  const { forecastByRep, forecastMetrics, forecastMovements, pipelineStages, source } =
+    await getCRMData()
+
   return (
-    <CRMShell page="Forecast Pulse" eyebrow="Forecast refreshed from live CRM activity">
+    <CRMShell
+      page="Forecast Pulse"
+      eyebrow={
+        source === "supabase"
+          ? "Forecast refreshed from Supabase CRM activity"
+          : "Forecast using demo CRM data"
+      }
+    >
       <section className="rounded-lg border bg-card p-5 shadow-sm">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>

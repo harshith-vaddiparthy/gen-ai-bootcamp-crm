@@ -1,18 +1,14 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 
-import { runSalesCopilotChat } from "@/lib/ai/openai"
-import { getCRMData } from "@/lib/crm-repository"
+import { createCRMTask } from "@/lib/crm-repository"
 
 export const runtime = "nodejs"
 
-const messageSchema = z.object({
-  role: z.enum(["user", "assistant"]),
-  content: z.string().min(1).max(4000),
-})
-
 const requestSchema = z.object({
-  messages: z.array(messageSchema).min(1).max(20),
+  title: z.string().min(2).max(200),
+  priority: z.enum(["Low", "Medium", "High"]).default("Medium"),
+  dueDate: z.string().date().optional(),
 })
 
 export async function POST(request: Request) {
@@ -21,18 +17,14 @@ export async function POST(request: Request) {
   if (!parsed.success) {
     return NextResponse.json(
       {
-        error: "Invalid copilot-chat payload.",
+        error: "Invalid task payload.",
         issues: parsed.error.flatten(),
       },
       { status: 400 }
     )
   }
 
-  const { copilotContext } = await getCRMData()
-  const result = await runSalesCopilotChat({
-    messages: parsed.data.messages,
-    context: copilotContext,
-  })
+  const result = await createCRMTask(parsed.data)
 
   if (!result.ok) {
     return NextResponse.json(result, { status: result.status })

@@ -1,12 +1,5 @@
 import { CRMShell } from "@/components/crm-shell"
-import {
-  accountTimeline,
-  copilotSuggestions,
-  dashboardKpis,
-  followUpTasks,
-  pipelineStages,
-  priorityDeals,
-} from "@/lib/crm-data"
+import { getCRMData } from "@/lib/crm-repository"
 import {
   ArrowUpRightIcon,
   BotIcon,
@@ -19,9 +12,28 @@ import {
   TrendingUpIcon,
 } from "lucide-react"
 
-export default function Page() {
+export const dynamic = "force-dynamic"
+
+export default async function Page() {
+  const {
+    accountTimeline,
+    copilotSuggestions,
+    dashboardKpis,
+    followUpTasks,
+    pipelineStages,
+    priorityDeals,
+    source,
+  } = await getCRMData()
+
   return (
-    <CRMShell page="Revenue Command Center">
+    <CRMShell
+      page="Revenue Command Center"
+      eyebrow={
+        source === "supabase"
+          ? "Live Supabase CRM data"
+          : "Demo CRM data until Supabase is configured"
+      }
+    >
           <section className="grid gap-3 lg:grid-cols-[1.25fr_0.75fr]">
             <div className="rounded-lg border bg-card p-5 shadow-sm">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">

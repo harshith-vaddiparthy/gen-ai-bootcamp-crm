@@ -367,6 +367,9 @@ Initial app structure:
 - `src/app/dashboard/page.tsx` for the first CRM dashboard.
 - `src/components/app-sidebar.tsx` for CRM navigation.
 - `src/lib/crm-data.ts` for realistic mocked CRM data.
+- `src/lib/crm-repository.ts` for Supabase-backed CRM reads and writes.
+- `supabase/migrations` for the Postgres schema.
+- `supabase/seed` for demo CRM seed data.
 - `src/lib/ai/openai.ts` for server-only OpenAI utilities.
 - `src/app/api/ai/summarize-record/route.ts`
 - `src/app/api/ai/draft-follow-up/route.ts`
