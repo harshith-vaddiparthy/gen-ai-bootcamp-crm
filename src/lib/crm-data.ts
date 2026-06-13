@@ -163,3 +163,177 @@ export const copilotSuggestions = [
     action: "Structure note",
   },
 ]
+
+export const forecastMetrics = [
+  {
+    label: "Commit forecast",
+    value: "$392K",
+    detail: "74% confidence",
+    change: "+12% from last week",
+  },
+  {
+    label: "Best case",
+    value: "$621K",
+    detail: "14 active opportunities",
+    change: "+$82K newly qualified",
+  },
+  {
+    label: "Likely slip",
+    value: "$148K",
+    detail: "5 deals need executive action",
+    change: "2 moved from green to amber",
+  },
+]
+
+export const forecastMovements = [
+  {
+    account: "Northstar Labs",
+    amount: "$96K",
+    movement: "Commit",
+    reason: "Legal has a fixed review window and the champion confirmed budget.",
+    action: "Send redline summary today",
+  },
+  {
+    account: "Mercury Retail",
+    amount: "$118K",
+    movement: "Slip Risk",
+    reason: "No technical stakeholder meeting is booked after discovery.",
+    action: "Schedule technical discovery",
+  },
+  {
+    account: "RelayWorks",
+    amount: "$74K",
+    movement: "Upside",
+    reason: "Pilot success criteria are clear and procurement is already engaged.",
+    action: "Confirm approval path",
+  },
+  {
+    account: "AtlasBio",
+    amount: "$52K",
+    movement: "At Risk",
+    reason: "Champion changed roles and there is no replacement buyer mapped.",
+    action: "Identify new economic buyer",
+  },
+]
+
+export const forecastByRep = [
+  {
+    owner: "Avery Jones",
+    commit: "$168K",
+    bestCase: "$244K",
+    risk: "Medium",
+    coverage: 3.2,
+  },
+  {
+    owner: "Mina Patel",
+    commit: "$126K",
+    bestCase: "$203K",
+    risk: "Low",
+    coverage: 4.1,
+  },
+  {
+    owner: "Jordan Lee",
+    commit: "$98K",
+    bestCase: "$174K",
+    risk: "High",
+    coverage: 2.1,
+  },
+]
+
+export const teamActivityStats = [
+  {
+    label: "Calls logged",
+    value: "46",
+    detail: "18 with decision makers",
+  },
+  {
+    label: "Emails sent",
+    value: "132",
+    detail: "34 follow-ups generated from notes",
+  },
+  {
+    label: "Meetings booked",
+    value: "19",
+    detail: "7 technical validations",
+  },
+  {
+    label: "CRM updates",
+    value: "88",
+    detail: "21 AI-assisted",
+  },
+]
+
+export const repActivity = [
+  {
+    rep: "Avery Jones",
+    focus: "Enterprise closers",
+    calls: 14,
+    emails: 39,
+    meetings: 7,
+    crmHygiene: 92,
+  },
+  {
+    rep: "Mina Patel",
+    focus: "Mid-market pilots",
+    calls: 17,
+    emails: 54,
+    meetings: 8,
+    crmHygiene: 87,
+  },
+  {
+    rep: "Jordan Lee",
+    focus: "Retail pipeline",
+    calls: 9,
+    emails: 26,
+    meetings: 3,
+    crmHygiene: 68,
+  },
+  {
+    rep: "Sam Rivera",
+    focus: "Expansion",
+    calls: 6,
+    emails: 13,
+    meetings: 1,
+    crmHygiene: 76,
+  },
+]
+
+export const activityInsights = [
+  "Jordan has the most at-risk pipeline and the lowest meeting conversion this week.",
+  "Avery is on track, but two high-value tasks are due before end of day.",
+  "Mina's follow-up quality is strong: 4 of 6 proposal-stage deals have next steps confirmed.",
+]
+
+export const recommendationCards = [
+  {
+    title: "Protect Northstar commit",
+    priority: "High",
+    why: "Legal is the only blocker on a $96K deal. The buyer needs a concise summary before Friday's review.",
+    suggestedAction: "Draft a legal redline summary and CFO-ready ROI email.",
+  },
+  {
+    title: "Unstick Mercury Retail",
+    priority: "High",
+    why: "The discovery call was positive, but no technical stakeholder is attached and the close date is slipping.",
+    suggestedAction: "Ask for a technical validation meeting with operations and IT.",
+  },
+  {
+    title: "Clean RelayWorks notes",
+    priority: "Medium",
+    why: "The latest notes contain pilot metrics, timeline, and buyer roles that are not yet structured in CRM fields.",
+    suggestedAction: "Convert the call note into CRM updates and review before saving.",
+  },
+]
+
+export const copilotContext = {
+  workspace: "PulseCRM Sales",
+  currentForecast: "$392K commit on $842K open pipeline",
+  biggestRisks: [
+    "Mercury Retail has no next meeting",
+    "AtlasBio lost its champion",
+    "Northstar legal review needs seller-owned follow-up",
+  ],
+  topDeals: priorityDeals,
+  tasks: followUpTasks,
+  recentActivity: accountTimeline,
+}

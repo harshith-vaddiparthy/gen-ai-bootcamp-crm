@@ -51,7 +51,7 @@ cp .env.example .env.local
 Add your OpenAI API key:
 
 ```bash
-OPENAI_API_KEY=your_openai_api_key_here
+CRM_OPENAI_API_KEY=your_openai_api_key_here
 OPENAI_MODEL=gpt-5.4-mini
 CRM_OPENAI_BASE_URL=https://api.openai.com/v1
 ```
@@ -90,6 +90,7 @@ src/app/api/ai/*/route.ts           Sales Copilot API routes
 ## Environment Variables
 
 ```txt
+CRM_OPENAI_API_KEY=
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-5.4-mini
 CRM_OPENAI_BASE_URL=https://api.openai.com/v1

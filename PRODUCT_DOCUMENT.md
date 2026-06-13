@@ -353,6 +353,7 @@ Recommended stack:
 
 Environment variables:
 
+- `CRM_OPENAI_API_KEY`
 - `OPENAI_API_KEY`
 - `OPENAI_MODEL`
 - `CRM_OPENAI_BASE_URL`

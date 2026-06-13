@@ -1,18 +1,4 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Separator } from "@/components/ui/separator"
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar"
+import { CRMShell } from "@/components/crm-shell"
 import {
   accountTimeline,
   copilotSuggestions,
@@ -35,35 +21,7 @@ import {
 
 export default function Page() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center justify-between gap-3 border-b bg-background/92 px-4 backdrop-blur transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex min-w-0 items-center gap-2">
-            <SidebarTrigger className="-ml-1" />
-            <Separator
-              orientation="vertical"
-              className="mr-2 data-vertical:h-4 data-vertical:self-auto"
-            />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">PulseCRM</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Revenue Command Center</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
-          </div>
-          <div className="hidden items-center gap-2 rounded-md border bg-card px-3 py-1.5 text-xs text-muted-foreground md:flex">
-            <SparklesIcon className="size-3.5 text-sky-600" />
-            <span>24 AI suggestions waiting for review</span>
-          </div>
-        </header>
-
-        <main className="flex flex-1 flex-col gap-5 bg-[#f7f7f2] p-4 md:p-6">
+    <CRMShell page="Revenue Command Center">
           <section className="grid gap-3 lg:grid-cols-[1.25fr_0.75fr]">
             <div className="rounded-lg border bg-card p-5 shadow-sm">
               <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -311,8 +269,6 @@ export default function Page() {
               ))}
             </div>
           </section>
-        </main>
-      </SidebarInset>
-    </SidebarProvider>
+    </CRMShell>
   )
 }

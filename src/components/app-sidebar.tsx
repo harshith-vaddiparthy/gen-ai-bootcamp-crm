@@ -64,15 +64,15 @@ const data = {
       items: [
         {
           title: "Forecast pulse",
-          url: "/dashboard",
+          url: "/dashboard/forecast",
         },
         {
           title: "Team activity",
-          url: "/dashboard",
+          url: "/dashboard/activity",
         },
         {
           title: "AI recommendations",
-          url: "/dashboard",
+          url: "/dashboard/ai-recommendations",
         },
       ],
     },
